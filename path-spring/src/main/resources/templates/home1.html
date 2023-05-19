@@ -8,5 +8,141 @@
 
 <div th:text="${list}"></div>
 
+
+<div class="container">
+    <form action="/point/new3" method="post">
+        <button type="submit">다음</button>
+    </form>
+</div>
+
+<style>
+    .canvas-container {
+        position: relative;
+    }
+    #myCanvas,
+    #myCanvas2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #myCanvas {
+        z-index: 2;
+    }
+
+    #myCanvas2 {
+        z-index: 1;
+    }
+</style>
+
+<div class="canvas-container">
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <canvas id="myCanvas2" width="500" height="500"></canvas>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    document.write("Hello World!");
+    function search()   {
+        document.write("Hello World2!");
+    }
+    search();
+    const aaa = /*[[${list}]]*/;
+    document.write(aaa);
+
+    const image = new Image();
+    image.src = '4cmd.jpg';
+
+    const canvas2 = document.getElementById('myCanvas2');
+    const ctx2 = canvas2.getContext('2d');
+    image.addEventListener('load', () => {
+        const aspectRatio = image.width / image.height;
+        let scaledWidth = canvas2.width;
+        let scaledHeight = canvas2.height;
+        if (aspectRatio > 1) {
+            scaledHeight = canvas2.width / aspectRatio;
+        } else {
+            scaledWidth = canvas2.height * aspectRatio;
+        }
+        ctx2.drawImage(image, 0, 0, scaledWidth, scaledHeight);
+    });
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const shortestPathNodes = aaa;
+    const nodePositions = {
+        A: { x: 50, y: 50 },
+        B: { x: 100, y: 100 },
+        C: { x: 150, y: 50 },
+        D: { x: 200, y: 100 },
+        E: { x: 250, y: 50 },
+        F: { x: 300, y: 100 },
+        G: { x: 350, y: 50 },
+        4001: { x: 35, y: 170 },
+        4010: { x: 75, y: 170 },
+        438: { x: 75, y: 150 },
+        439: { x: 75, y: 125 },
+        440: { x: 75, y: 100 },
+        441: { x: 75, y: 75 },
+        4011: { x: 117, y: 170 },
+        401: { x: 117, y: 185 },
+        402: { x: 117, y: 205 },
+        433: { x: 117, y: 150 },
+        434: { x: 117, y: 130 },
+        435: { x: 117, y: 110 },
+        436: { x: 117, y: 90 },
+        437: { x: 117, y: 70 },
+        403: { x: 170, y: 170 },
+        404: { x: 185, y: 170 },
+        405: { x: 200, y: 170 },
+        4012: { x: 210, y: 170 },
+        430: { x: 210, y: 150 },
+        431: { x: 210, y: 120 },
+        432: { x: 210, y: 80 },
+        4013: { x: 210, y: 58 },
+        4015: { x: 228, y: 58 },
+        449: { x: 228, y: 58 },
+        448: { x: 260, y: 58 },
+        447: { x: 320, y: 58 },
+        4014: { x: 343, y: 58 },
+        4016: { x: 360, y: 58 },
+        4018: { x: 374, y: 58 },
+        446: { x: 374, y: 58 },
+        445: { x: 430, y: 58 },
+        406: { x: 235, y: 170 },
+        407: { x: 250, y: 170 },
+        408: { x: 265, y: 170 },
+        409: { x: 300, y: 170 },
+        410: { x: 315, y: 170 },
+        411: { x: 330, y: 170 },
+        4017: { x: 343, y: 170 },
+        424: { x: 343, y: 80 },
+        422: { x: 343, y: 120 },
+        420: { x: 343, y: 150 },
+        4019: { x: 375, y: 170 },
+        412: { x: 380, y: 170 },
+        413: { x: 395, y: 170 },
+        414: { x: 410, y: 170 },
+        419: { x: 374, y: 70 },
+        418: { x: 374, y: 90 },
+        417: { x: 374, y: 110 },
+        416: { x: 374, y: 130 },
+        415: { x: 374, y: 150 }
+    };
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#FF0000';
+
+    ctx.beginPath();
+
+    ctx.moveTo(nodePositions[shortestPathNodes[0]].x, nodePositions[shortestPathNodes[0]].y);
+
+    for (let i = 1; i < shortestPathNodes.length; i++) {
+        const currentNode = nodePositions[shortestPathNodes[i]];
+        ctx.lineTo(currentNode.x, currentNode.y);
+    }
+
+    ctx.stroke();
+    /*]]>*/
+</script>
 </body>
 </html>

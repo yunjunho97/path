@@ -54,8 +54,39 @@ public class PointController {
     @GetMapping("/link")
     public String createNew1(Model model){
         ArrayList<Integer> list = (ArrayList<Integer>) point.getPath();
+
         model.addAttribute("list", list);
+        /*int holdI = 0;
+        String maPP = "4";
+        if(list.size() > 0){
+            String hold = Integer.toString(list.get(0));
+            char holdC = hold.charAt(0);
+            holdI = holdC - '0';
+            maPP = holdC + "cmd.jpg";
+        }
+        model.addAttribute("maPP", maPP);
+        while(true){
+            if(list.size() <= 0){
+                break;
+            }
+            String hold1 = Integer.toString(list.get(0));
+            char holdC1 = hold1.charAt(0);
+            int holdI1 = holdC1 - '0';
+            if(holdI == holdI1){
+                list.remove(0);
+            } else {
+                list.remove(0);
+                break;
+            }
+        }
+        point.setPath(list);*/
         return "home1";
+    }
+
+    @PostMapping("/point/new3")
+    public String createNew2(){
+        System.out.println(point.getPath());
+        return "redirect:/link";
     }
 
     /*@GetMapping("/link")

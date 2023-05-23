@@ -37,5 +37,4 @@ public class Point {
         this.path = path;
     }
 
-    //Map<Integer, List<DijkstraAlgorithm.Edge>> graph;
 }
